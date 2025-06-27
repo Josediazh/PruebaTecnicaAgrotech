@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { checking, logout } from "../store/auth/authSlice";
+import { checking, clearMessage, login, logout } from "../store/auth/authSlice";
 import dummyApi from "../api/apiDummy";
+import { clearProducts } from "../store/products/productsSlice";
 
 export const useAuthStore = () => {
 
@@ -8,20 +9,28 @@ export const useAuthStore = () => {
     const dispatch = useDispatch();
 
 
-    const startLogin = async ({ username, password }) => {
+    const startLogin = async ({ user, password }) => {
+
         dispatch(checking());
 
         try {
 
             const resp = await dummyApi.post('/auth/login', {
-                username: username,
-                password: password
+                username: user,
+                password
             });
 
-            console.log(resp);
+            const { username, accessToken, refreshToken } = resp.data;
 
+            localStorage.setItem('userInfo', username);
+            localStorage.setItem('token', refreshToken);
+            localStorage.setItem('token.init-date', new Date().getTime());
 
-        } catch {
+            dispatch(login({ username }));
+
+        } catch (error) {
+
+            dispatch(logout(error.response.data?.message || 'Ocurrio un error inesperado'));
 
         }
     }
@@ -31,9 +40,7 @@ export const useAuthStore = () => {
         dispatch(checking());
 
         const token = localStorage.getItem('token');
-
-        console.log(token);
-
+        const user = localStorage.getItem('userInfo');
 
         if (!token) {
 
@@ -44,8 +51,15 @@ export const useAuthStore = () => {
 
         try {
 
-            console.log('renew');
+            const resp = await dummyApi.post('/auth/refresh', {
+                refreshToken: token
+            });
 
+            const { accessToken, refreshToken } = resp.data;
+
+            localStorage.setItem('token', refreshToken);
+            localStorage.setItem('token.init-date', new Date().getTime());
+            dispatch(login({ username: user }));
 
         } catch (error) {
 
@@ -56,9 +70,18 @@ export const useAuthStore = () => {
 
     }
 
+    const startLogout = () => {
+
+        localStorage.clear();
+        dispatch(logout());
+        dispatch(clearProducts());
+
+    }
+
     return {
         startLogin,
         checkAuthToken,
+        startLogout,
         status,
         user,
         errorMessage

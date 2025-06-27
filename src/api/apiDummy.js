@@ -12,9 +12,9 @@ dummyApi.interceptors.request.use(config => {
     config.headers = {
         ...config.headers,
         'Content-Type': 'application/json',
-        'x-token': localStorage.getItem('token')
+        'Access-Control-Allow-Origin': 'http://localhost:5173',
+        'Access-Control-Allow-Credentials': 'true'
     }
-    config.withCredentials = true;
 
     return config;
 });

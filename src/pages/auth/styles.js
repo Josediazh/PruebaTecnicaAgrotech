@@ -62,7 +62,7 @@ export const Button = styled.button`
 
 export const Error = styled.p`
   color: #e53e3e;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 1rem;
   font-size: 0.9rem;
   text-align: left;

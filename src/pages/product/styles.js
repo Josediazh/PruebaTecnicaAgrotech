@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgb(251,249,250);
+  padding: 40px 0px;
 `;
 
 
@@ -25,6 +26,7 @@ export const Table = styled.table`
   border-radius: 10px;
   border-spacing: 2px;
   box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+  width: 70%;
 `;
 
 export const Th = styled.th`
@@ -115,4 +117,39 @@ export const Error = styled.p`
   margin-bottom: 1rem;
   font-size: 0.9rem;
   text-align: left;
+`;
+
+export const UserInfo = styled.div`
+  background-color: rgb(20,71,230);
+  color: white;
+  font-size: 14px;
+  font-family: monospace;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+`;
+
+export const SpanInfo = styled.span`
+  background-color: rgb(20,71,230);
+  color: white;
+  font-size: 14px;
+  font-family: monospace;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  &:nth-of-type(1){
+    align-self: flex-start;
+  }
+  &:nth-of-type(2){
+    align-self: flex-end;
+    cursor: pointer;
+  }
+`;
+
+export const ContentButtoms = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 `;

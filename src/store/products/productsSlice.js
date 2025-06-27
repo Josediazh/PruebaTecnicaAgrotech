@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     activeProduct: {},
+    productsMessage: null,
     products: []
 }
 
@@ -13,21 +14,21 @@ export const productSlice = createSlice({
             state.products = action.payload;
             state.activeProduct = {};
         },
-        setActiveProduct: (state, action) => {
-            state.activeProduct = action.payload;
-        },
-        exitActiveProduct: (state) => {
-            state.activeProduct = {}
-        },
         setNewProduct: (state, action) => {
             state.products.push(action.payload);
             state.activeProduct = {};
         },
-        clearEvents: (state, action) => {
+        setMessageProduct: (state, action) => {
+            state.productsMessage = action.payload;
+        },
+        clearMessageProduct: (state) => {
+            state.productsMessage = null;
+        },
+        clearProducts: (state) => {
             state.products = [];
             state.activeProduct = {};
         },
     }
 });
 
-export const { setActiveProduct, exitActiveProduct, setNewProduct, setProduct, clearEvents } = productSlice.actions;
+export const { setNewProduct, setProduct, clearProducts, setMessageProduct, clearMessageProduct } = productSlice.actions;

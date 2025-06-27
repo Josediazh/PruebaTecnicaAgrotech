@@ -9,15 +9,38 @@ import {
     Error
 } from './styles'
 import { useAuthStore } from '../../hooks/useAuthStore';
+import { clearMessage } from '../../store/auth/authSlice';
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
 
 export const LoginPage = () => {
 
+    const dispatch = useDispatch();
     const { startLogin, errorMessage } = useAuthStore();
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    useEffect(() => {
+        if (errorMessage != null) {
+
+            Swal.fire({
+                title: "Error",
+                text: errorMessage,
+                icon: "error",
+                confirmButtonText: "Listo",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    dispatch(clearMessage());
+                }
+            });
+
+        }
+    }, [errorMessage])
+
     const onSubmit = (data) => {
         const { username, password } = data;
-        startLogin({ username, password });
+        startLogin({ user: username, password });
     }
 
     return (
