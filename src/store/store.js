@@ -5,7 +5,7 @@ import { uiSlice } from './ui/uiSlice'
 
 export const store = configureStore({
     reducer: {
-        ui: uiSlice,
+        ui: uiSlice.reducer,
         calendar: productSlice.reducer,
         auth: authSlice.reducer
     },

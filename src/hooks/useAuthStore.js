@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
-import { checking } from "../store/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { checking, logout } from "../store/auth/authSlice";
 import dummyApi from "../api/apiDummy";
 
 export const useAuthStore = () => {
 
+    const { status, user, errorMessage } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
 
@@ -25,8 +26,42 @@ export const useAuthStore = () => {
         }
     }
 
+    const checkAuthToken = async () => {
+
+        dispatch(checking());
+
+        const token = localStorage.getItem('token');
+
+        console.log(token);
+
+
+        if (!token) {
+
+            dispatch(logout());
+
+            return;
+        }
+
+        try {
+
+            console.log('renew');
+
+
+        } catch (error) {
+
+            dispatch(logout());
+            localStorage.clear();
+
+        }
+
+    }
+
     return {
-        startLogin
+        startLogin,
+        checkAuthToken,
+        status,
+        user,
+        errorMessage
     }
 
 }
