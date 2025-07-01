@@ -5,6 +5,7 @@ import { useAuthStore } from "../hooks/useAuthStore";
 import { useEffect } from "react";
 import { CheckingAuth } from "../components/CheckingAuth";
 import { useProductStore } from "../hooks/useProductStore";
+import { CategoryPage } from "../pages/category/CategoryPage";
 
 export const AppRouter = () => {
 
@@ -28,6 +29,10 @@ export const AppRouter = () => {
                 {
                     path: "/",
                     element: <ProductsPage />,
+                },
+                {
+                    path: "/categorys",
+                    element: <CategoryPage />,
                 },
             ] : status === "checking"
                 ? [

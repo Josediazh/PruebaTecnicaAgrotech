@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useDispatch, useSelector } from "react-redux";
 import { onModalClose } from "../../../store/ui/uiSlice";
-import { setNewProduct } from "../../../store/products/productsSlice";
 import { useProductStore } from "../../../hooks/useProductStore";
 import { useEffect } from "react";
 

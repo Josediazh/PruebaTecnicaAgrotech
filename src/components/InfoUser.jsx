@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
 import { FaSignOutAlt } from "react-icons/fa";
-import { SpanInfo, UserInfo } from "../styles";
-import { useAuthStore } from "../../../hooks/useAuthStore";
+import { useAuthStore } from "../hooks/useAuthStore";
+import { SpanInfo, UserInfo } from "./styles";
 
-const InfoUser = () => {
+export const InfoUser = () => {
 
     const { startLogout, user } = useAuthStore();
 
@@ -17,5 +16,3 @@ const InfoUser = () => {
         </>
     )
 }
-
-export default InfoUser

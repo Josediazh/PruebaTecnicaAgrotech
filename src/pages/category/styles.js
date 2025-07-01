@@ -19,6 +19,24 @@ export const Title = styled.h2`
   font-size: 28px;
 `;
 
+export const Button = styled.button`
+  padding: 10px;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: 1px solid rgb(20,71,230);
+  color: rgb(20,71,230);
+
+  &:hover {
+    background-color: rgb(20,71,230);
+    color: white;
+  }
+`;
+
 export const Table = styled.table`
   border: 0 solid;
   margin-top: 20px;
@@ -61,66 +79,3 @@ export const TdTbody = styled.td`
   font-family: monospace;
   font-size: 16px;
 `
-
-export const Button = styled.button`
-  padding: 10px;
-  background-color: transparent;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  border: 1px solid rgb(20,71,230);
-  color: rgb(20,71,230);
-
-  &:hover {
-    background-color: rgb(20,71,230);
-    color: white;
-  }
-`;
-
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Input = styled.input`
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: monospace;
-  &:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-`;
-
-export const Textarea = styled.textarea`
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: monospace;
-  &:focus {
-    outline: none;
-    border-color: #667eea;
-  }
-`;
-
-export const Error = styled.p`
-  color: #e53e3e;
-  margin-top: 0px;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  text-align: left;
-`;
-
-export const ContentButtoms = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-`;
